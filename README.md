@@ -3,7 +3,7 @@
 Version:SQL5.6<br>
 Table1  Student<br>
 |stu_id|	name|	birthday|	sex|
-|-------|:----:|:-----:|:----:|
+| ------- | :----: | :-----: | :----: |
 |1	|ZHAOLEI|	1990-01-01|	MALE|
 |2	|QIANDIAN|	1990-12-21|	MALE|
 |3	|SUNFENG|	1990-05-20|	MALE|
