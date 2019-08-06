@@ -1,8 +1,9 @@
 # SQLpractice
 50 questions to pass SQL<br>
+=====
 Version:SQL5.6<br>
 Table1  Student<br>
-|stu_id|	name|	birthday|	sex|
+| stu_id |	name |	birthday |	sex |
 | ------- | :----: | :-----: | :----: |
 |1	|ZHAOLEI|	1990-01-01|	MALE|
 |2	|QIANDIAN|	1990-12-21|	MALE|
