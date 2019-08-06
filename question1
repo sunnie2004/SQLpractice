@@ -1,0 +1,11 @@
+1.查询"01"课程比"02"课程成绩高的学生的信息及课程分数
+SELECT Student.stu_id,name,birthday,sex,sc1.course_id,sc1.score,sc2.course_id,sc2.score FROM Student
+JOIN  
+((SELECT * FROM Score
+WHERE course_id='01')sc1
+JOIN 
+(SELECT * FROM Score
+WHERE course_id='02')sc2
+ON sc1.stu_id = sc2.stu_id
+AND sc1.score > sc2.score)
+ON Student.stu_id = sc1.stu_id 
