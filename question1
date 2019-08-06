@@ -9,9 +9,11 @@ WHERE course_id='02')sc2
 ON sc1.stu_id = sc2.stu_id
 AND sc1.score > sc2.score)
 ON Student.stu_id = sc1.stu_id 
+
 stu_id	name	birthday	sex	course_id	score	course_id	score
 2	QIANDIAN	1990-12-21T00:00:00Z	MALE	01	70	02	60
 4	LIYUN	1990-08-06T00:00:00Z	MALE	01	50	02	30
+
 1.1. 查询同时存在" 01 "课程和" 02 "课程的情况
 SELECT Student.stu_id,name,birthday,sex,sc1.course_id,sc1.score,sc2.course_id,sc2.score FROM Student
 JOIN  
@@ -22,6 +24,7 @@ JOIN
 WHERE course_id='02')sc2
 ON sc1.stu_id = sc2.stu_id) 
 ON Student.stu_id = sc1.stu_id
+
 stu_id	name	birthday	sex	course_id	score	course_id	score
 1	ZHAOLEI	1990-01-01T00:00:00Z	MALE	01	80	02	90
 2	QIANDIAN	1990-12-21T00:00:00Z	MALE	01	70	02	60
@@ -39,6 +42,7 @@ LEFT JOIN
 WHERE course_id='02')sc2
 ON sc1.stu_id = sc2.stu_id) 
 ON Student.stu_id = sc1.stu_id
+
 stu_id	name	birthday	sex	course_id	score	course_id	score
 1	ZHAOLEI	1990-01-01T00:00:00Z	MALE	01	80	02	90
 2	QIANDIAN	1990-12-21T00:00:00Z	MALE	01	70	02	60
@@ -53,7 +57,7 @@ WHERE course_id='02'
 AND stu_id NOT IN
 (SELECT stu_id FROM Score
 WHERE course_id='01')
-|stu_id	|course_id	|score|
-|-----|-----|----|
-|7|	02|	89|
+
+stu_id	course_id	score
+7	02	89
 
