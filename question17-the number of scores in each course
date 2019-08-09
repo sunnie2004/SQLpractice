@@ -1,0 +1,43 @@
+17. 统计各科成绩各分数段人数：课程编号，课程名称，[100-85]，[85-70]，[70-60]，[60-0] 及所占百分比
+SET @100number85:=0,@70number60:=0;
+
+SELECT sc1.course_id,Course.name,sc.total,
+sc3.100number85,CONVERT(sc3.100number85/sc.total*100,DECIMAL(18,2)) as Percent100to85,
+sc1.85number70,CONVERT(sc1.85number70/sc.total*100,DECIMAL(18,2)) as Percent85to70,
+sc4.70number60,CONVERT(sc4.70number60/sc.total*100,DECIMAL(18,2)) as Percent70to60,
+sc2.60number0,CONVERT(sc2.60number0/sc.total*100,DECIMAL(18,2)) as Percent60to0 FROM 
+((SELECT course_id,COUNT(*)as total
+FROM Score
+GROUP BY course_id)sc
+LEFT JOIN
+(SELECT course_id,COUNT(*)as 85number70
+FROM Score
+WHERE score<=85 AND score>70
+GROUP BY course_id)sc1
+ON sc1.course_id=sc.course_id
+LEFT JOIN
+(SELECT course_id,COUNT(*)as 60number0
+FROM Score
+WHERE score<=60   
+GROUP BY course_id)sc2
+ON sc1.course_id=sc2.course_id
+LEFT JOIN
+(SELECT course_id,COUNT(*)as 100number85
+FROM Score
+WHERE score<=100 AND score>85
+GROUP BY course_id)sc3 
+ON sc1.course_id=sc3.course_id
+LEFT JOIN
+(SELECT course_id,COUNT(*)as 70number60
+FROM Score
+WHERE score<=70 AND score>60
+GROUP BY course_id)sc4
+ON sc1.course_id=sc4.course_id
+)
+LEFT JOIN Course
+ON sc1.course_id=Course.course_id
+course_id	name	total	100number85	Percent100to85	85number70	Percent85to70	70number60	Percent70to60	60number0	Percent60to0
+01	CHINESE	6	(null)	(null)	3	50	1	16.67	2	33.33
+02	MATH	6	3	50	1	16.67	(null)	(null)	2	33.33
+03	ENGLISH	6	2	33.33	2	33.33	(null)	(null)	2	33.33
+
