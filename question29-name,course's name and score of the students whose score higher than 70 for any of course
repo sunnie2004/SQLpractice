@@ -1,0 +1,18 @@
+29. 查询任何一门课程成绩在 70 分以上的姓名、课程名称和分数
+SELECT Student.name,Course.name,Score.score FROM Student,Score,Course
+WHERE score>=70
+AND Student.stu_id=Score.stu_id
+AND Score.course_id=Course.course_id
+name	name	score
+ZHAOLEI	CHINESE	80
+QIANDIAN	CHINESE	70
+SUNFENG	CHINESE	80
+ZHOUMEI	CHINESE	76
+ZHAOLEI	MATH	90
+SUNFENG	MATH	80
+ZHOUMEI	MATH	87
+ZHENGZHU	MATH	89
+ZHAOLEI	ENGLISH	99
+QIANDIAN	ENGLISH	80
+SUNFENG	ENGLISH	80
+ZHENGZHU	ENGLISH	98
