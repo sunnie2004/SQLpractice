@@ -1,0 +1,10 @@
+19.查询每门课程被选修的学生数
+SELECT sc.course_id,Course.name,sc.student_number FROM
+(SELECT course_id,COUNT(*) as student_number FROM Score
+GROUP BY course_id)sc
+JOIN Course
+ON Course.course_id=sc.course_id
+course_id	name	student_number
+01	CHINESE	6
+02	MATH	6
+03	ENGLISH	6
