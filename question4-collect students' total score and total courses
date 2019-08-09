@@ -1,0 +1,30 @@
+4. 查询所有同学的学生编号、学生姓名、选课总数、所有课程的总成绩(没成绩的显示为 null )
+SELECT Student.stu_id, name,sc.sum_score,sc.course_number FROM Student
+LEFT JOIN
+(SELECT stu_id,SUM(score)sum_score,COUNT(score)course_number FROM Score
+GROUP BY stu_id)sc
+ON Student.stu_id=sc.stu_id
+stu_id	name	sum_score	Course_number
+1	ZHAOLEI	269	3
+2	QIANDIAN	210	3
+3	SUNFENG	240	3
+4	LIYUN	100	3
+5	ZHOUMEI	163	2
+6	WULAN	65	2
+7	ZHENGZHU	187	2
+8	WANGJU	(null)	(null)
+
+4.1  查有成绩的学生信息
+SELECT Student.stu_id, name,sc.sum_score,sc.number FROM Student
+RIGHT JOIN
+(SELECT stu_id,SUM(score)sum_score,COUNT(score)number FROM Score
+GROUP BY stu_id)sc
+ON Student.stu_id=sc.stu_id
+stu_id	name	sum_score	number
+1	ZHAOLEI	269	3
+2	QIANDIAN	210	3
+3	SUNFENG	240	3
+4	LIYUN	100	3
+5	ZHOUMEI	163	2
+6	WULAN	65	2
+7	ZHENGZHU	187	2
