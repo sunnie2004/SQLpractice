@@ -1,0 +1,62 @@
+15. 按各科成绩进行排序，并显示排名， Score 重复时保留名次空缺
+Mysql without
+ rank() over(order by **)
+SET @cur_rank :=0;
+SET @prev_score := 0;
+SET @pre_courseid :=0;
+SET @inc_rank := 1;
+SELECT sc1.course_id,sc1.stu_id, @inc_rank:= IF(@pre_courseid=sc1.course_id,@inc_rank+1,1) as record_rank,
+@cur_rank:=IF(@pre_courseid=sc1.course_id,
+              IF(@prev_score=score,@cur_rank,@inc_rank),1)as rank,
+(@prev_score:=score) as subscore,
+@pre_courseid:= sc1.course_id FROM
+(SELECT * FROM Score 
+ORDER BY course_id ASC,score DESC)sc1
+course_id	stu_id	record_rank	rank	subscore	@pre_courseid:= sc1.course_id
+01	3	1	1	90	01
+01	1	2	2	80	01
+01	5	3	3	76	01
+01	2	4	4	70	01
+01	4	5	5	50	01
+01	6	6	6	31	01
+02	3	1	1	90	02
+02	1	2	1	90	02
+02	7	3	3	89	02
+02	5	4	4	87	02
+02	2	5	5	60	02
+02	4	6	6	30	02
+03	1	1	1	99	03
+03	7	2	2	98	03
+03	3	3	3	89	03
+03	2	4	4	80	03
+03	6	5	5	34	03
+03	4	6	6	20	03
+15.1按各科成绩进行排序，并显示排名， Score 重复时合并名次
+SET @cur_rank :=0;
+SET @prev_score := 0;
+SET @pre_courseid :=0;
+SELECT sc1.course_id,sc1.stu_id, @cur_rank:=IF(@pre_courseid=sc1.course_id,
+                                               IF(@prev_score=score,@cur_rank,@cur_rank+1),1)as rank,
+(@prev_score:=score) as subscore,@pre_courseid:= sc1.course_id FROM
+(SELECT * FROM Score 
+ORDER BY course_id ASC,score DESC)sc1 
+course_id	stu_id	rank	subscore	@pre_courseid:= sc1.course_id
+01	3	1	90	01
+01	1	2	80	01
+01	5	3	76	01
+01	2	4	70	01
+01	4	5	50	01
+01	6	6	31	01
+02	3	1	90	02
+02	1	1	90	02
+02	7	2	89	02
+02	5	3	87	02
+02	2	4	60	02
+02	4	5	30	02
+03	1	1	99	03
+03	7	2	98	03
+03	3	3	89	03
+03	2	4	80	03
+03	6	5	34	03
+03	4	6	20	03
+
