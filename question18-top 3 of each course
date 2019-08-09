@@ -1,0 +1,20 @@
+18. 查询各科成绩前三名的记录
+SELECT course_id,Score.stu_id,Student.name,score FROM Score
+JOIN Student
+ON Score.stu_id= Student.stu_id
+WHERE(
+SELECT COUNT(distinct(sc1.score)) FROM Score as sc1 
+WHERE sc1.course_id = Score.course_id AND sc1.score>Score.score)<3
+ORDER BY course_id,score DESC
+course_id	stu_id	name	score
+01	1	ZHAOLEI	80
+01	3	SUNFENG	80
+01	5	ZHOUMEI	76
+01	2	QIANDIAN	70
+02	1	ZHAOLEI	90
+02	7	ZHENGZHU	89
+02	5	ZHOUMEI	87
+03	1	ZHAOLEI	99
+03	7	ZHENGZHU	98
+03	3	SUNFENG	80
+03	2	QIANDIAN	80
