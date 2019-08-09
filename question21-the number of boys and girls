@@ -1,0 +1,6 @@
+21. 查询男生、女生人数
+SELECT sex,COUNT(*)as number FROM Student
+GROUP BY sex
+sex	number
+FEMALE	4
+MALE	4
