@@ -1,0 +1,11 @@
+11. 查询两门及其以上不及格课程的同学的学号，姓名及其平均成绩 
+SELECT Student.stu_id, name,ac.avg FROM Student
+JOIN
+(SELECT stu_id,AVG(score)avg FROM Score
+WHERE Score.score<60
+GROUP BY stu_id
+HAVING COUNT(stu_id)>=2)ac
+ON ac.stu_id=Student.stu_id
+stu_id	name	avg
+4	LIYUN	33.33333
+6	WULAN	32.5
