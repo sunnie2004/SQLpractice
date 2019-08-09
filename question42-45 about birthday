@@ -1,0 +1,28 @@
+42. 查询本周过生日的学生
+SELECT stu_id,name,birthday FROM Student
+WHERE WEEK(CURRENT_DATE())=WEEK(birthday)
+stu_id	name	birthday
+4	LIYUN	1990-08-06T00:00:00Z
+
+43. 查询下周过生日的学生
+INSERT INTO Student(name,birthday,sex) VALUES
+('ZHAOLU','1990-08-12','MALE');
+
+SELECT stu_id,name,birthday FROM Student
+WHERE WEEK(birthday)-WEEK(CURRENT_DATE())=1
+stu_id	name	birthday
+9	ZHAOLU	1990-08-12
+
+44. 查询本月过生日的学生
+SELECT * FROM Student
+WHERE MONTH(birthday)=MONTH(CURRENT_DATE())
+stu_id	name	birthday	sex
+4	LIYUN	1990-08-06T00:00:00Z	MALE
+
+45. 查询下月过生日的学生
+INSERT INTO Student(name,birthday,sex) VALUES
+('ZHAOLU','1990-09-12','MALE');
+SELECT * FROM Student
+WHERE MONTH(birthday)-MONTH(CURRENT_DATE())=1
+stu_id	name	birthday	sex
+9	ZHAOLU	1990-09-12T00:00:00Z	MALE
