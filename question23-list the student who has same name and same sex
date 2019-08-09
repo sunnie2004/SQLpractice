@@ -1,0 +1,12 @@
+23查询同名同性学生名单，并统计同名人数
+INSERT INTO Student(name,birthday,sex) VALUES
+('ZHAOLEI','1990-02-01','MALE');
+SELECT Student.*,st1.number FROM Student
+LEFT JOIN 
+(SELECT  name,sex,COUNT(*)as number FROM Student 
+GROUP BY name,sex)st1
+ON st1.name=Student.name AND st1.sex=Student.sex
+WHERE st1.number>1
+stu_id	name	birthday	sex	number
+1	ZHAOLEI	1990-01-01T00:00:00Z	MALE	2
+9	ZHAOLEI	1990-02-01T00:00:00Z	MALE	2
