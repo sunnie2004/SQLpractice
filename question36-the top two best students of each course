@@ -1,0 +1,12 @@
+36. 查询每门功成绩最好的前两名
+SELECT course_id,stu_id,score FROM Score sc1
+WHERE (SELECT COUNT(*) FROM Score sc2 WHERE sc2.score>sc1.score 
+      AND sc1.course_id=sc2.course_id)<2
+ORDER BY course_id,score DESC
+course_id	stu_id	score
+01	1	80
+01	3	80
+02	1	90
+02	7	89
+03	1	99
+03	7	98
