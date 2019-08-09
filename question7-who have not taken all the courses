@@ -1,0 +1,10 @@
+7. 查询没有学全所有课程的同学的信息 
+SELECT * FROM Student
+WHERE stu_id IN
+(SELECT stu_id FROM Score
+GROUP BY stu_id
+HAVING COUNT(score)<3)
+stu_id	name	birthday	sex
+5	ZHOUMEI	1991-12-01T00:00:00Z	FEMALE
+6	WULAN	1992-03-01T00:00:00Z	FEMALE
+7	ZHENGZHU	1989-07-01T00:00:00Z	FEMALE
