@@ -1,0 +1,10 @@
+12. 检索" 01 "课程分数小于 60，按分数降序排列的学生信息
+SELECT * FROM Student
+RIGHT JOIN
+(SELECT * FROM Score
+WHERE score <60 AND course_id='01'
+ORDER BY score DESC)sc
+ON sc.stu_id=Student.stu_id
+stu_id	name	birthday	sex	stu_id	course_id	score
+4	LIYUN	1990-08-06T00:00:00Z	MALE	4	01	50
+6	WULAN	1992-03-01T00:00:00Z	FEMALE	6	01	31
