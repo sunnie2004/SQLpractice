@@ -1,0 +1,17 @@
+34. 成绩有重复的情况下，查询选修「张三」老师所授课程的学生中，成绩最高的学生信息及其成绩
+UPDATE Score SET score=90
+where stu_id = "02"
+and course_id ="02"
+SELECT Score.stu_id,name,birthday,sex,score FROM Score,Student
+WHERE score=
+(SELECT MAX(score) FROM Score
+WHERE course_id=(SELECT course_id FROM Course,Teacher
+WHERE  Teacher.name='ZHANGSAN'
+AND Teacher.tea_id = Course.teacher))
+AND Student.stu_id=Score.stu_id
+AND course_id=(SELECT course_id FROM Course,Teacher
+WHERE  Teacher.name='ZHANGSAN'
+AND Teacher.tea_id = Course.teacher)
+stu_id	name	birthday	sex	score
+1	ZHAOLEI	1990-01-01T00:00:00Z	MALE	90
+2	QIANDIAN	1990-12-21T00:00:00Z	MALE	90
