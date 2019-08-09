@@ -1,0 +1,12 @@
+10. 查询没学过"张三"老师讲授的任一门课程的学生姓名
+SELECT name FROM Student
+WHERE stu_id NOT IN
+(SELECT DISTINCT stu_id FROM Score 
+WHERE Score.course_id IN 
+(SELECT course_id FROM Course
+JOIN Teacher
+ON Course.teacher= Teacher.tea_id
+WHERE Teacher.name='ZHANGSAN'))
+name
+WULAN
+WANGJU
