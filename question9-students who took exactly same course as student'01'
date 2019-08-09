@@ -1,0 +1,14 @@
+9.查询和" 01 "号的同学学习的课程完全相同的其他同学的信息 
+SELECT * FROM Student
+WHERE stu_id IN
+(SELECT DISTINCT stu_id FROM Score
+WHERE course_id IN
+(SELECT course_id FROM Score
+WHERE stu_id='01')
+AND stu_id<>'01' 
+GROUP BY stu_id
+HAVING COUNT(stu_id)>=3)
+stu_id	name	birthday	sex
+2	QIANDIAN	1990-12-21T00:00:00Z	MALE
+3	SUNFENG	1990-05-20T00:00:00Z	MALE
+4	LIYUN	1990-08-06T00:00:00Z	MALE
