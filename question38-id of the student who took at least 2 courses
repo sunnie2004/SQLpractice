@@ -1,0 +1,12 @@
+38. 检索至少选修两门课程的学生学号
+SELECT stu_id,COUNT(*) as Number FROM Score
+GROUP BY stu_id
+HAVING COUNT(*)>=2
+stu_id	Number
+1	3
+2	3
+3	3
+4	3
+5	2
+6	2
+7	2
