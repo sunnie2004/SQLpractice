@@ -2,8 +2,9 @@
 ## 50 questions to pass SQL<br>
 
 ### 1.Version:SQL5.6<br>
-
-### 2.Table1  Student<br>
+### 2.tool<br>
+http://sqlfiddle.com/#!9/d4e25a
+### 3.Table1  Student<br>
 | stu_id |	name |	birthday |	sex |
 | ------- | ------ | ------- | ------- |
 |1	|ZHAOLEI|	1990-01-01|	MALE|
@@ -52,18 +53,27 @@
 |7	|03	|98|
 ### 3.practice <br>
 #### 3.1create table
-CREATE TABLE  [IF NOT EXISTS] table_name(create_definition,.....
+CREATE TABLE table_name(create_definition,.....
 );
 set FOREIGN KEY:
 > WHEN CREATING TABLE
-
+FOREIGN KEY (column_name) REFERENCES table_name(column_name)<br>
 >AFTER CREATING TABLE
-
+ALTER TABLE table_name ADD FOREIGN KEY (column_name) 
+REFERENCES table_name(column_name)
 #### 3.2add content
-INSERT INTO table_name[(column,....)] VALUES
-(),
-(),....
-();
+INSERT INTO table_name[(column1,column2,....)] VALUES<br>
+(),<br>
+(),<br>....<br>
+();<br>
 #### 3.3update table
+UPDATE table_name<br>
+SET column1 = value1, column2 = value2, ...<br>
+WHERE condition;
 #### 3.4delete table
+DELETE FROM table_name WHERE condition;<br>
 #### 3.5query table
+SELECT column_name(s)<br>
+FROM table_name<br>
+WHERE condition<br>
+LIMIT number;<br>
