@@ -1,0 +1,11 @@
+26. 查询平均成绩大于等于 85 的所有学生的学号、姓名和平均成绩
+SELECT sc.stu_id,Student.name,sc.avg FROM
+(SELECT stu_id,AVG(score) as avg FROM Score
+GROUP BY stu_id
+HAVING avg>=85
+ORDER BY avg DESC)sc
+LEFT JOIN Student
+ON Student.stu_id=sc.stu_id
+stu_id	name	avg
+7	ZHENGZHU	93.5
+1	ZHAOLEI	89.66667
