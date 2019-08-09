@@ -1,0 +1,16 @@
+13. 按平均成绩从高到低显示所有学生的所有课程的成绩以及平均成绩
+SELECT stu_id,
+MAX(CASE WHEN course_id='01' THEN score ELSE 0 END) AS'01',
+MAX(CASE WHEN course_id='02' THEN score ELSE 0 END) AS'02',
+MAX(CASE WHEN course_id='03' THEN score ELSE 0 END) AS'03',
+ AVG(score) FROM Score
+GROUP BY stu_id
+ORDER BY AVG(score) DESC
+stu_id	01	02	03	AVG(score)
+7	0	89	98	93.5
+1	80	90	99	89.66667
+5	76	87	0	81.5
+3	80	80	80	80
+2	70	60	80	70
+4	50	30	20	33.33333
+6	31	0	34	32.5
