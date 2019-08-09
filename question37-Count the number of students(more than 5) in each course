@@ -1,0 +1,8 @@
+37. 统计每门课程的学生选修人数（超过 5 人的课程才统计）
+SELECT course_id,COUNT(*) as Number FROM Score
+GROUP BY course_id
+HAVING COUNT(*)>5
+course_id	Number
+01	6
+02	6
+03	6
