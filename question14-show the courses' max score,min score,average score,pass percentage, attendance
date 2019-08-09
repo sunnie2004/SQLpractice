@@ -1,0 +1,25 @@
+14. 查询各科成绩最高分、最低分和平均分：
+以如下形式显示：课程 ID，课程 name，最高分，最低分，平均分，及格率，中等率，优良率，优秀率
+及格为>=60，中等为：70-80，优良为：80-90，优秀为：>=90
+要求输出课程号和选修人数，查询结果按人数降序排列，若人数相同，按课程号升序排列
+SELECT sc1.course_id,Course.name,sc1.MAXIMUM,sc1.MINIMUM,sc1.AVERAGE,sc1.NUMBER,
+sc1.60CNT,CONCAT(round(sc1.60CNT/sc1.NUMBER*100,2),'%') PASSPER,
+sc1.70CNT,CONCAT(CONVERT((sc1.70CNT/sc1.NUMBER)*100,decimal(10,2)),'%') MIDDLEPASSPER,
+sc1.80CNT,trim(cast((sc1.80CNT/sc1.NUMBER)*100 as dec(10,2)))+'%' GOODPASSPER,
+sc1.90CNT,cast((sc1.90CNT/sc1.NUMBER)*100 as char(5))+'%' GOODPASSPER
+FROM
+(SELECT course_id,MAX(score) AS MAXIMUM,MIN(score) AS MINIMUM,AVG(score) AS AVERAGE,COUNT(*) AS NUMBER,
+ COUNT(CASE WHEN score>=60 THEN 1 END)AS 60CNT,
+ COUNT(CASE WHEN score>=70 AND score<80 THEN 1 END)AS 70CNT,
+ COUNT(CASE WHEN score>=80 AND score<90 THEN 1 END)AS 80CNT,
+  COUNT(CASE WHEN score>=90 THEN 1 END)AS 90CNT
+ FROM Score
+GROUP BY course_id
+ORDER BY NUMBER,course_id)sc1
+JOIN Course
+ON Course.course_id=sc1.course_id
+
+course_id	name	MAXIMUM	MINIMUM	AVERAGE	NUMBER	60CNT	PASSPER	70CNT	MIDDLEPASSPER	80CNT	GOODPASSPER	90CNT	GOODPASSPER
+01	CHINESE	80	31	64.5	6	4	66.67%	2	33.33%	2	33.33	0	0
+02	MATH	90	30	72.66667	6	5	83.33%	0	0.00%	3	50	1	16.66
+03	ENGLISH	99	20	68.5	6	4	66.67%	0	0.00%	2	33.33	2	33.33
