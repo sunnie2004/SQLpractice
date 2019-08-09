@@ -1,9 +1,9 @@
 # SQLpractice
 ## 50 questions to pass SQL<br>
 
-### Version:SQL5.6<br>
+### 1.Version:SQL5.6<br>
 
-### Table1  Student<br>
+### 2.Table1  Student<br>
 | stu_id |	name |	birthday |	sex |
 | ------- | ------ | ------- | ------- |
 |1	|ZHAOLEI|	1990-01-01|	MALE|
@@ -50,4 +50,20 @@
 |6	|03	|34|
 |7	|02	|89|
 |7	|03	|98|
-### questions <br>
+### 3.practice <br>
+#### 3.1create table
+CREATE TABLE  [IF NOT EXISTS] table_name(create_definition,.....
+);
+set FOREIGN KEY:
+> WHEN CREATING TABLE
+
+>AFTER CREATING TABLE
+
+#### 3.2add content
+INSERT INTO table_name[(column,....)] VALUES
+(),
+(),....
+();
+#### 3.3update table
+#### 3.4delete table
+#### 3.5query table
