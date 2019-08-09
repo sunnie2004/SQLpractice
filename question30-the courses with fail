@@ -1,0 +1,8 @@
+30.查询存在不及格的课程
+SELECT DISTINCT Score.course_id,Course.name FROM Score,Course
+WHERE score<60
+AND Score.course_id=Course.course_id
+course_id	name
+01	CHINESE
+02	MATH
+03	ENGLISH
